@@ -39,25 +39,81 @@ To visualize the yearly trend of company revenue and expenses from 2017 to 2023 
 | | `plt.tight_layout()`, `plt.show()` | Optimizes spacing to avoid overlapping elements and renders the figure |
 
 ## Program / Code
-
-#Company Revenue and Expense Visualization using Matplotlib
+# Company Revenue and Expense Visualization using Matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-#Step 1: Create dataset
+# Step 1: Create dataset
+years = np.arange(2017, 2024)
+revenue = [45.0, 52.5, 61.0, 58.0, 74.5, 89.0, 104.5]  # in Lakhs
+expenses = [32.0, 36.5, 41.0, 44.0, 49.5, 56.0, 63.5]  # in Lakhs
 
-#Step 2: Plot Revenue and Expenses
+# Step 2: Plot Revenue and Expenses
+plt.figure(figsize=(8, 5))
+plt.plot(
+    years,
+    revenue,
+    color="green",
+    linestyle="-",
+    marker="o",
+    linewidth=2,
+    markersize=7,
+    label="Revenue (Lakhs)",
+)
+plt.plot(
+    years,
+    expenses,
+    color="red",
+    linestyle="--",
+    marker="s",
+    linewidth=2,
+    markersize=7,
+    label="Expenses (Lakhs)",
+)
 
-#Step 3: Add titles, labels, and grid
+# Step 3: Add titles, labels, and grid
+plt.title(
+    "Yearly Company Revenue vs. Expenses (2017-2023)",
+    fontsize=13,
+    fontweight="bold",
+)
+plt.xlabel("Year", fontsize=11)
+plt.ylabel("Amount (in Lakhs)", fontsize=11)
+plt.xticks(years)
+plt.grid(True, linestyle="--", alpha=0.5)
 
-#Step 4: Add legend
+# Step 4: Add legend
+plt.legend(loc="upper left")
 
-#Step 5: Annotate highest revenue and expense
+# Step 5: Annotate highest revenue and expense
+max_rev_idx = np.argmax(revenue)
+max_exp_idx = np.argmax(expenses)
 
-#Step 6: Adjust layout and show plot
+plt.annotate(
+    f"Peak Revenue: {revenue[max_rev_idx]}L",
+    xy=(years[max_rev_idx], revenue[max_rev_idx]),
+    xytext=(years[max_rev_idx] - 1.5, revenue[max_rev_idx] + 6),
+    arrowprops=dict(arrowstyle="->", color="green", lw=1.5),
+    fontsize=9.5,
+    fontweight="bold",
+    color="green",
+)
 
+plt.annotate(
+    f"Peak Expense: {expenses[max_exp_idx]}L",
+    xy=(years[max_exp_idx], expenses[max_exp_idx]),
+    xytext=(years[max_exp_idx] - 1.8, expenses[max_exp_idx] - 10),
+    arrowprops=dict(arrowstyle="->", color="red", lw=1.5),
+    fontsize=9.5,
+    fontweight="bold",
+    color="red",
+)
+
+# Step 6: Adjust layout and show plot
+plt.tight_layout()
+plt.show()
 ## Output
-
+<img width="1210" height="671" alt="image" src="https://github.com/user-attachments/assets/735ecede-e6c7-41c1-b74f-514b496a5c34" />
 
 ## Result
 
